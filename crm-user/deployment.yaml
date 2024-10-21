@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crm-user-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crm-user
+  template:
+    metadata:
+      labels:
+        app: crm-user
+    spec:
+      containers:
+      - name: crm-user
+        image: crm-user:latest  # Sử dụng image bạn đã build từ trước
+        ports:
+        - containerPort: 8000
