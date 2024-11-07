@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-k8s
+  labels:
+    app: deployment-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: deployment-app
+  template:
+    metadata:
+      labels:
+        app: deployment-app
+    spec:
+      containers:
+      - name: con-deployment-app
+        image: huycrouch/huyhq1010:v2
+        ports:
+        - containerPort: 8080

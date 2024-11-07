@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: crm-chat
+spec:
+  containers:
+  - name: crm-chat
+    image: huycrouch/huyhq1010:v2
+    imagePullPolicy: Always
+    ports:
+    - containerPort: 8080

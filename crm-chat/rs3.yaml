@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: # metadata of the ReplicaSet
+  name: rs3 # name of the ReplicaSet
+  labels: # labels of the ReplicaSet
+    app: app-crm-api # label of the ReplicaSet
+    type: rs # label of the ReplicaSet
+spec:
+  # modify replicas according to your case
+  replicas: 3 # number of Pods
+  selector: # selector of the ReplicaSet
+    matchLabels: # matchLabels of the ReplicaSet
+      app: crm-api # required label of the Pod , replica find the Pod by this label
+  template: # template config to create the Pod if the Pod is not compatible with matchLabels
+    metadata: # metadata of the Pod
+      labels: # labels of the Pod
+        app: crm-api # label of the Pod
+        project: crm # label of the Pod
+    spec:
+      containers: # containers of the Pod
+      - name: con-crm-api # name of the container
+        image: huycrouch/huyhq1010:v2 # image of the container from DockerHub
