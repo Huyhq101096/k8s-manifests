@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: deployment-k8s
-  labels:
-    app: deployment-app
+  namespace: project-crm
+  # labels:
+  #   app: deployment-app
 spec:
   replicas: 3
   selector:

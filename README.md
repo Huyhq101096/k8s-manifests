@@ -1,5 +1,9 @@
 # k8s-manifests
 
+    - create namespace for group k8s resources
+        - namespace.yaml
+        - reroursequota.yaml , # limit resources for namespace cpu, memory...
+
     step 1: create a pod
     step 2: create a service
     step 3: create a deployment
@@ -13,7 +17,7 @@
     - kubectl apply -f service.yaml
 
 ## expose service
-    - minikube service <name-service> --url
+    - minikube service <name-service> -n <name-space> --url
 
 
 ## create replicaset
