@@ -1,3 +1,57 @@
+# Install enviroment
+
+
+
+
+# Create Cluster
+    - sudo nano /etc/hosts
+        * add:  127.0.0.1 control-plane-node (name control plan)
+    - sudo kubeadm init --config=kubeadm-config.yaml
+
+        To start using your cluster, you need to run the following as a regular user:
+            mkdir -p $HOME/.kube
+            sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+            sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+            Alternatively, if you are the root user, you can run:
+
+            export KUBECONFIG=/etc/kubernetes/admin.conf
+
+            You should now deploy a pod network to the cluster.
+            Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+            https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+            You can now join any number of control-plane nodes by copying certificate authorities
+            and service account keys on each node and then running the following as root:
+
+            kubeadm join 10.1.2.40:6443 --token wbp6do.jko7ot5wfxowk1o4 \
+                    --discovery-token-ca-cert-hash sha256:b2012c852e4cafaec0594596ead0b56f62565378943e1540e4b2be7ec037618f \
+                    --control-plane 
+
+            Then you can join any number of worker nodes by running the following on each as root:
+
+            kubeadm join 10.1.2.40:6443 --token wbp6do.jko7ot5wfxowk1o4 \
+                    --discovery-token-ca-cert-hash sha256:b2012c852e4cafaec0594596ead0b56f62565378943e1540e4b2be7ec037618f
+
+    - mkdir -p $HOME/.kube
+        sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+        sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+    - kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+
+
+
+
+# Check version
+
+    - kubectl: 	kubectl version --client --short
+    - kubeadm:	kubeadm version
+    - kubelet:	kubelet --version
+    - Control Plane: 	kubectl version --short
+
+
+
+
 # k8s-manifests
 
     - create namespace for group k8s resources

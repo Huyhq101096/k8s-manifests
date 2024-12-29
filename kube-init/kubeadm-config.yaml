@@ -1,0 +1,24 @@
+apiVersion: kubeadm.k8s.io/v1beta4
+kind: InitConfiguration
+localAPIEndpoint:
+  advertiseAddress: "10.1.2.40"
+  bindPort: 6443
+nodeRegistration:
+  criSocket: "unix:///var/run/containerd/containerd.sock"
+  name: "control-plane-node"
+  taints:
+  - key: "node-role.kubernetes.io/control-plane"
+    effect: "NoSchedule"
+
+
+---
+apiVersion: kubeadm.k8s.io/v1beta4          # Chỉ định phiên bản API của cấu hình kubeadm
+kind: ClusterConfiguration                  # Loại cấu hình là cho Cluster (thiết lập toàn bộ Cluster)
+kubernetesVersion: "v1.32.0"                # Phiên bản Kubernetes mà bạn muốn cài đặt
+controlPlaneEndpoint: "10.1.2.40:6443"      # Địa chỉ API Server cho các Worker Nodes kết nối
+networking:
+  podSubnet: "192.168.0.0/16"               # Dải mạng cấp phát cho các Pod
+  serviceSubnet: "10.96.0.0/12"             # Dải mạng cấp phát cho các Service (ClusterIP)
+etcd:
+  local:
+    dataDir: "/var/lib/etcd"                # Vị trí lưu trữ dữ liệu của etcd trên Control Plane
