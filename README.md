@@ -9,6 +9,7 @@
     - sudo kubeadm init --config=kubeadm-config.yaml
 
         To start using your cluster, you need to run the following as a regular user:
+
             mkdir -p $HOME/.kube
             sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
             sudo chown $(id -u):$(id -g) $HOME/.kube/config
@@ -24,15 +25,14 @@
             You can now join any number of control-plane nodes by copying certificate authorities
             and service account keys on each node and then running the following as root:
 
-            kubeadm join 10.1.2.40:6443 --token wbp6do.jko7ot5wfxowk1o4 \
-                    --discovery-token-ca-cert-hash sha256:b2012c852e4cafaec0594596ead0b56f62565378943e1540e4b2be7ec037618f \
+            kubeadm join 10.1.2.40:6443 --token jr9uxs.s0ffz2fk0hwcciej \
+                    --discovery-token-ca-cert-hash sha256:8db968977beb9205c369079e3787c876c3492bd12575ada1d482ecf3b65138c2 \
                     --control-plane 
 
             Then you can join any number of worker nodes by running the following on each as root:
 
-            kubeadm join 10.1.2.40:6443 --token wbp6do.jko7ot5wfxowk1o4 \
-                    --discovery-token-ca-cert-hash sha256:b2012c852e4cafaec0594596ead0b56f62565378943e1540e4b2be7ec037618f
-
+            kubeadm join 10.1.2.40:6443 --token jr9uxs.s0ffz2fk0hwcciej \
+                    --discovery-token-ca-cert-hash sha256:8db968977beb9205c369079e3787c876c3492bd12575ada1d482ecf3b65138c2 
     - mkdir -p $HOME/.kube
         sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
         sudo chown $(id -u):$(id -g) $HOME/.kube/config
